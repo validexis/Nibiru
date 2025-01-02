@@ -64,8 +64,9 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 
-SNAP_NAME=$(curl -s https://ss.nibiru.nodestake.org/ | egrep -o ">20.*\.tar.lz4" | tr -d ">")
-curl -o - -L https://ss.nibiru.nodestake.org/${SNAP_NAME}  | lz4 -c -d - | tar -x -C $HOME/.nibid
+LATEST_SNAPSHOT=$(curl -s https://server-1.stavr.tech/Mainnet/Nibiru/ | grep -oE 'nibiru-snap-[0-9]+\.tar\.lz4' | while read SNAPSHOT; do HEIGHT=$(curl -s "https://server-1.stavr.tech/Mainnet/Nibiru/${SNAPSHOT%.tar.lz4}-info.txt" | awk '/Block height:/ {print $3}'); echo "$SNAPSHOT $HEIGHT"; done | sort -k2 -nr | head -n 1 | awk '{print $1}')
+curl -o - -L https://server-1.stavr.tech/Mainnet/Nibiru/$LATEST_SNAPSHOT | lz4 -c -d - | tar -x -C $HOME/.nibid
+wget -O $HOME/.nibid/config/addrbook.json "https://server-1.stavr.tech/Mainnet/Nibiru/addrbook.json"
 
 sudo systemctl daemon-reload
 sudo systemctl enable nibid
