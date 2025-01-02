@@ -23,3 +23,8 @@ To upgrade your validator node to the latest version, run:
 ~~~bash
 source <(curl -s https://raw.githubusercontent.com/validexis/Nibiru/main/upgrademain.sh)
 ~~~
+
+---
+
+## 📚 Additional Information
+For more details, visit the (https://services.validexis.com/mainnets/nibiru) or open an issue for questions or support.
