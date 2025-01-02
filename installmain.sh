@@ -9,10 +9,10 @@ eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
 echo "export PATH=$PATH:/usr/local/go/bin:/usr/local/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
-cd $HOME
-rm -rf nibiru
-git clone https://github.com/NibiruChain/nibiru.git
-cd nibiru
+cd $HOME && mkdir -p go/bin/
+git clone https://github.com/NibiruChain/nibiru/
+cd $HOME/nibiru/
+git fetch --all
 git checkout v1.5.0
 make install
 
