@@ -13,7 +13,7 @@ cd $HOME && mkdir -p go/bin/
 git clone https://github.com/NibiruChain/nibiru/
 cd $HOME/nibiru/
 git fetch --all
-git checkout v2.1.0
+git checkout v2.2.0-p1
 make install
 
 nibid config chain-id cataclysm-1
